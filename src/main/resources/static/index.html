@@ -39,12 +39,14 @@
         <thead>
         <tr>
             <td>Наименование</td>
+            <td>Категория</td>
             <td>Цена</td>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="p in ProductsPage.content">
             <td>{{p.title}}</td>
+            <td>{{p.categoryTitle}}</td>
             <td>{{p.price}}</td>
             <td>
                 <button class="btn btn-danger" ng-click="deleteProductById(p.id)">Удалить товар</button>
@@ -70,20 +72,26 @@
         </ul>
     </nav>
 
-<!--    <h3>Сохранить нового пациента</h3>-->
-<!--    <form novalidate ng-submit="savePatient()">-->
-<!--        <div class="form-group col-md-6">-->
-<!--            <label >Имя</label>-->
-<!--            <input class="form-control" type="text" ng-model="NewPatient.name">-->
-<!--        </div>-->
-<!--        <div class="form-group col-md-6">-->
-<!--            <label >Возраст</label>-->
-<!--            <input class="form-control" type="number" ng-model="NewPatient.age">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <button class="btn btn-success" type="submit">Сохранить</button>-->
-<!--        </div>-->
-<!--    </form>-->
+    <h3>Сохранить новый товар</h3>
+    <form novalidate ng-submit="saveProduct()">
+        <div class="form-group col-md-6">
+            <label>Название</label>
+            <input class="form-control" type="text" ng-model="NewProduct.title">
+        </div>
+        <div class="form-group col-md-6">
+            <label >Цена</label>
+            <input class="form-control" type="number" ng-model="NewProduct.price">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect1">Категория</label>
+            <select class="form-control" id="exampleFormControlSelect1" ng-model="NewProduct.categoryId">
+                <option value="{{x.id}}" ng-repeat="x in Categories">{{x.title}}</option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-success" type="submit">Сохранить</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

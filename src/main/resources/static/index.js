@@ -1,15 +1,15 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
     const contextPath = 'http://localhost:8080/app/api/v1';
 
-    // $scope.savePatient = function () {
-    //     console.log($scope.NewPatient)
-    //     $http.post(contextPath + '/patient', $scope.NewPatient)
-    //         .then(function (resp){
-    //             $scope.NewPatient = null
-    //             $scope.fillTable();
-    //         })
-    //
-    // };
+    $scope.saveProduct = function () {
+        console.log($scope.NewProduct)
+        $http.post(contextPath + '/product', $scope.NewProduct)
+            .then(function (resp){
+                $scope.NewProduct = null
+                $scope.fillTable();
+            })
+
+    };
 
     $scope.fillTable = function (pageIndex = 1) {
         $http({
@@ -43,7 +43,17 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         return arr;
     }
 
+    $scope.fillCategories = function () {
+        $http({
+            url: contextPath + '/category',
+            method: 'GET',
+        }).then(function (response) {
+            $scope.Categories = response.data;
+        });
+    };
+
     $scope.fillTable();
+    $scope.fillCategories();
 
     $scope.deleteProductById = function (id) {
         $http.delete(contextPath + '/product/' + id).then(function () {
