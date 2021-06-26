@@ -32,6 +32,10 @@ public class ProductService {
         return productRepository.save(mapper.toEntity(product));
     }
 
+    public ProductDto getById(Long productId) {
+        return mapper.toDto(productRepository.getById(productId));
+    }
+
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }

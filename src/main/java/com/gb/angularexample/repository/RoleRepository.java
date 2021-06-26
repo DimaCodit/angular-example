@@ -1,0 +1,9 @@
+package com.gb.angularexample.repository;
+
+import com.gb.angularexample.model.Role;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RoleRepository extends CrudRepository<Role, Long> {
+}

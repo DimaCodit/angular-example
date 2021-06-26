@@ -52,12 +52,40 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     };
 
+    $scope.fillCart = function () {
+        $http({
+            url: contextPath + '/cart/',
+            method: 'GET',
+        }).then(function (response) {
+            $scope.Cart = response.data;
+        });
+    };
+
     $scope.fillTable();
     $scope.fillCategories();
+    $scope.fillCart();
 
     $scope.deleteProductById = function (id) {
         $http.delete(contextPath + '/product/' + id).then(function () {
             $scope.fillTable();
+        });
+    };
+
+    $scope.addToCart = function (id) {
+        $http.put(contextPath + '/cart/add/' + id).then(function () {
+            $scope.fillCart();
+        });
+    };
+
+    $scope.deleteFromCart = function (id) {
+        $http.delete(contextPath + '/cart/delete/' + id).then(function () {
+            $scope.fillCart();
+        });
+    };
+
+    $scope.clearCart = function () {
+        $http.get(contextPath + '/cart/clear').then(function () {
+            $scope.fillCart();
         });
     };
 
